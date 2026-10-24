@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách Khu vực</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="associate-zone-view.html">🏢 Xem Khu Vực</a>
+    <a href="associate-shelf-check.html">📝 Kiểm Kệ</a>
+    <a href="associate-restock-task.html">⚡ Nhiệm Vụ & AI</a>
+    <a href="profile.html">👤 Cá Nhân</a>
+    <a href="notifications.html">🔔 Thông Báo</a>
+  </nav>
+
+  <h2>Quản lý Khu vực (Zone View)</h2>
+  <div id="zone-list"></div>
+
+  <script src="data.js"></script>
+  <script>
+    function renderZones() {
+      const zones = getItems('zones');
+      const container = document.getElementById('zone-list');
+      container.innerHTML = zones.map(z => `
+        <div class="zone-card status-${z.status}">
+          <h3>${z.name}</h3>
+          <p>Trạng thái: <strong>${z.status === 'Xanh' ? 'Đủ hàng' : 'Cần bổ sung'}</strong></p>
+        </div>
+      `).join('');
+    }
+    renderZones();
+  </script>
+</body>
+</html>

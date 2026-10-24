@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Báo cáo Kiểm kệ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="associate-zone-view.html">🏢 Xem Khu Vực</a>
+    <a href="associate-shelf-check.html">📝 Kiểm Kệ</a>
+    <a href="associate-restock-task.html">⚡ Nhiệm Vụ & AI</a>
+    <a href="profile.html">👤 Cá Nhân</a>
+    <a href="notifications.html">🔔 Thông Báo</a>
+  </nav>
+
+  <h2>Biểu mẫu Kiểm tra Kệ hàng</h2>
+  <form id="checkForm">
+    <label>Mã Kệ Hàng:</label><br>
+    <input type="text" id="shelfId" required value="S1"><br>
+
+    <label>Tỉ lệ lấp đầy (%):</label><br>
+    <input type="number" id="fillPercentage" min="0" max="100" required placeholder="Nhập từ 0 đến 100"><br>
+
+    <label>Tình trạng nhãn giá:</label><br>
+    <select id="priceTagStatus">
+      <option value="Đúng">Đúng giá & Đúng vị trí</option>
+      <option value="Sai/Thiếu">Sai giá / Thiếu nhãn giá</option>
+    </select><br>
+
+    <button type="submit">Gửi Báo Cáo</button>
+  </form>
+
+  <script src="data.js"></script>
+  <script>
+    document.getElementById('checkForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const newCheck = {
+        id: 'CHK-' + Date.now(),
+        shelfId: document.getElementById('shelfId').value,
+        fillPercentage: document.getElementById('fillPercentage').value,
+        priceTagStatus: document.getElementById('priceTagStatus').value,
+        createdAt: new Date().toLocaleString()
+      };
+      addItem('shelfChecks', newCheck);
+      alert('Đã gửi báo cáo kiểm kệ thành công!');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
