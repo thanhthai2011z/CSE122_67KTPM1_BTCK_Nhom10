@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Trang cá nhân</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="associate-zone-view.html">🏢 Xem Khu Vực</a>
+    <a href="associate-shelf-check.html">📝 Kiểm Kệ</a>
+    <a href="associate-restock-task.html">⚡ Nhiệm Vụ & AI</a>
+    <a href="profile.html">👤 Cá Nhân</a>
+    <a href="notifications.html">🔔 Thông Báo</a>
+  </nav>
+
+  <h2>Thông tin cá nhân Nhân viên</h2>
+  <div id="user-info" class="info-card"></div>
+
+  <script src="data.js"></script>
+  <script>
+    const users = getItems('users');
+    const container = document.getElementById('user-info');
+    const currentUser = users[0] || { name: 'Nguyễn Văn A', role: 'Associate' };
+
+    container.innerHTML = `
+      <p><b>Họ và tên:</b> ${currentUser.name}</p>
+      <p><b>Vai trò:</b> ${currentUser.role} (Nhân viên cửa hàng)</p>
+      <p><b>Mã nhân viên:</b> NV-2026</p>
+    `;
+  </script>
+</body>
+</html>
